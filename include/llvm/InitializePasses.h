@@ -19,6 +19,20 @@ namespace llvm {
 
 class PassRegistry;
 
+///Initialize all of the passes I put in the Ros Threshold passes registry
+void initializeRosThresholds(PassRegistry&);
+void initializeSimpleCallGraphPass(PassRegistry&);
+void initializeClassObjectAccessPass(PassRegistry&);
+void initializeExternCallFinderPass(PassRegistry&);
+void initializeIfStatementsPass(PassRegistry&);
+void initializeBackwardPropigatePass(PassRegistry&);
+void initializeParamCallFinderPass(PassRegistry&);
+void initializeParamUsageFinderPass(PassRegistry&);
+void initializeGatherResultsPass(PassRegistry&);
+void initializeFindConstCompsPass(PassRegistry&);
+void initializeInstrumentBranchesPass(PassRegistry&);
+
+
 /// initializeCore - Initialize all passes linked into the
 /// TransformUtils library.
 void initializeCore(PassRegistry&);
@@ -61,6 +75,7 @@ void initializeCodeGen(PassRegistry&);
 
 /// initializeCodeGen - Initialize all passes linked into the CodeGen library.
 void initializeTarget(PassRegistry&);
+
 
 void initializeAAEvalPass(PassRegistry&);
 void initializeAddDiscriminatorsPass(PassRegistry&);

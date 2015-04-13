@@ -27,6 +27,10 @@
 #include "llvm/Transforms/IPO.h"
 #include "llvm/Transforms/Scalar.h"
 #include "llvm/Transforms/Vectorize.h"
+#include "llvm/Transforms/RosThresholds.h"
+//Not sure on these two...
+#include "llvm/Analysis/LoopPass.h"
+#include "llvm/IR/Dominators.h"
 
 using namespace llvm;
 
@@ -515,6 +519,18 @@ void PassManagerBuilder::addLateLTOOptimizationPasses(
 }
 
 void PassManagerBuilder::populateLTOPassManager(legacy::PassManagerBase &PM) {
+
+  errs() << "Hey I'm populating the pass Manager for LTO\n";
+  PM.add(new LoopInfoWrapperPass());
+  PM.add(new DominatorTreeWrapperPass());
+  PM.add(createSimpleCallGraphPass());
+  PM.add(createClassObjectAccessPass());
+  PM.add(createIfStatementsPass());
+  PM.add(createBackwardPropigatePass());
+  PM.add(createParamCallFinderPass());
+  PM.add(createParamUsageFinderPass());
+  PM.add(createGatherResultsPass());
+  PM.add(createInstrumentBranchesPass());
   if (LibraryInfo)
     PM.add(new TargetLibraryInfoWrapperPass(*LibraryInfo));
 

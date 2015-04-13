@@ -35,6 +35,7 @@
 #include "llvm/Transforms/Utils/SymbolRewriter.h"
 #include "llvm/Transforms/Utils/UnifyFunctionExitNodes.h"
 #include "llvm/Transforms/Vectorize.h"
+#include "llvm/Transforms/RosThresholds.h"
 #include <cstdlib>
 
 namespace {
@@ -155,6 +156,7 @@ namespace {
       (void) llvm::createPrintBasicBlockPass(*(llvm::raw_ostream*)nullptr);
       (void) llvm::createModuleDebugInfoPrinterPass();
       (void) llvm::createPartialInliningPass();
+
       (void) llvm::createLintPass();
       (void) llvm::createSinkingPass();
       (void) llvm::createLowerAtomicPass();
@@ -171,6 +173,20 @@ namespace {
       (void) llvm::createStraightLineStrengthReducePass();
       (void) llvm::createMemDerefPrinter();
       (void) llvm::createFloat2IntPass();
+
+        //added custom passes here
+      (void) llvm::createSimpleCallGraphPass();
+      (void) llvm::createClassObjectAccessPass();
+      (void) llvm::createExternCallFinderPass();
+      (void) llvm::createIfStatementsPass();
+      (void) llvm::createBackwardPropigatePass();
+      (void) llvm::createParamCallFinderPass();
+      (void) llvm::createParamUsageFinderPass();
+      (void) llvm::createGatherResultsPass();
+      (void) llvm::createFindConstCompsPass();
+      (void) llvm::createInstrumentBranchesPass();
+        
+
 
       (void)new llvm::IntervalPartition();
       (void)new llvm::ScalarEvolution();

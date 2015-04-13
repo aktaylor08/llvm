@@ -42,6 +42,7 @@
 #include "llvm/Transforms/Utils/GlobalStatus.h"
 #include "llvm/Transforms/Utils/ModuleUtils.h"
 #include "llvm/Transforms/Utils/ValueMapper.h"
+#include "llvm/Transforms/RosThresholds.h"
 #include <list>
 #include <plugin-api.h>
 #include <system_error>
@@ -779,6 +780,19 @@ static void codegen(Module &M) {
       TripleStr, options::mcpu, Features.getString(), Options, RelocationModel,
       CodeModel::Default, CGOptLevel));
 
+  // for(Module::iterator F = M.begin(), E = M.end(); F != E; ++F){
+  //     errs() << F -> getName().str() << "\n";
+  //     for(Function::iterator BS = F -> begin(), BE = F -> end(); BS != BE; ++BS){
+  //       for(BasicBlock::iterator IS = BS -> begin(), IE = BS -> end(); IS != IE; ++IS){
+  //         if(InvokeInst* i = dyn_cast<InvokeInst>(&*IS)){
+  //             i -> dump();
+  //           }
+  //         if(CallInst* i = dyn_cast<CallInst>(&*IS)){
+  //             i -> dump();
+  //           }
+  //       }
+  //     }
+  // }
   runLTOPasses(M, *TM);
 
   if (options::TheOutputType == options::OT_SAVE_TEMPS)

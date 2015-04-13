@@ -59,6 +59,8 @@ tools/polly
 # Sphinx build tree, if building in-source dir.
 docs/_build
 
+Release+Asserts
+
 #==============================================================================#
 # Files created in tree by the Go bindings.
 #==============================================================================#

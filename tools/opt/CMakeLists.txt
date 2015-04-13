@@ -17,6 +17,7 @@ set(LLVM_LINK_COMPONENTS
   TransformUtils
   Vectorize
   Passes
+  RosThresholds
   )
 
 # Support plugins.
